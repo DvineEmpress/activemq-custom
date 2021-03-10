@@ -1,5 +1,9 @@
 FROM openjdk:8-jdk-alpine
+
+ENV ACTIVEMQ_TCP=61616 ACTIVEMQ_AMQP=5672 ACTIVEMQ_STOMP=61613 ACTIVEMQ_MQTT=1883 ACTIVEMQ_WS=61614 ACTIVEMQ_UI=8161
+
 COPY apache-activemq-5.16.1 /opt/apache-activemq-5.16.1
-WORKDIR /opt/apache-activemq-5.16.1/bin
-EXPOSE 61616 8161
-ENTRYPOINT [ "./activemq","console" ]
+WORKDIR /opt/apache-activemq-5.16.1
+EXPOSE $ACTIVEMQ_TCP $ACTIVEMQ_AMQP $ACTIVEMQ_STOMP $ACTIVEMQ_MQTT $ACTIVEMQ_WS $ACTIVEMQ_UI
+
+CMD ["/bin/sh", "-c", "bin/activemq console"]
