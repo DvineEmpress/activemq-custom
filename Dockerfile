@@ -6,7 +6,7 @@ ENV ACTIVEMQ_HOME /opt/activemq
 COPY apache-activemq-5.16.1 $ACTIVEMQ_HOME
 WORKDIR $ACTIVEMQ_HOME
 
-RUN /usr/sbin/useradd -r -M -d $ACTIVEMQ_HOME activemq && \
+RUN adduser -D -r -M -d $ACTIVEMQ_HOME activemq && \
     chown -R activemq:activemq apache-activemq-5.16.1 && \
     chown -R activemq:activemq /opt/activemq && \
     chown -h activemq:activemq $ACTIVEMQ_HOME
